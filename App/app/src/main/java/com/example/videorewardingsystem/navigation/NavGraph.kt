@@ -7,9 +7,9 @@ import androidx.navigation.compose.composable
 import com.example.videorewardingsystem.ui.screens.*
 
 sealed class Screen(val route: String) {
-    object Home : Screen("home")
-    object Profile : Screen("profile")
-    object Player : Screen("player")
+    data object Home : Screen("home")
+    data object Profile : Screen("profile")
+    data object Player : Screen("player")
 }
 
 @Composable
