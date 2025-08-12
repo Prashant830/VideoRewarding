@@ -48,8 +48,8 @@ fun VideoRewardingSystemTheme(
         SideEffect {
             val window = (view.context as Activity).window
             // Set status bar (network info) and navigation bar to black
-            window.statusBarColor = Color.Black.toArgb()
-            window.navigationBarColor = Color.Black.toArgb()
+            window.statusBarColor =  Color(0xFF111827).toArgb()
+            window.navigationBarColor = Color(0xFF111827).toArgb()
             WindowCompat.getInsetsController(window, view).apply {
                 isAppearanceLightStatusBars = false // White icons in status bar
                 isAppearanceLightNavigationBars = false // White icons in navigation bar

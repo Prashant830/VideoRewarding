@@ -9,6 +9,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.core.graphics.toColor
+import com.example.videorewardingsystem.ui.theme.ThemeColor
 
 @Composable
 fun HomeScreen(
@@ -18,7 +20,7 @@ fun HomeScreen(
     Scaffold(
         bottomBar = {
             NavigationBar(
-                containerColor = Color.Black,
+                containerColor = ThemeColor,
             ) {
                 NavigationBarItem(
                     selected = false,

@@ -2,15 +2,18 @@ package com.example.videorewardingsystem.ui.screens
 
 import android.content.Intent
 import android.net.Uri
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.videorewardingsystem.ui.screens.components.CommonTopBar
+import com.example.videorewardingsystem.ui.theme.ThemeColor
 import com.example.videorewardingsystem.ui.viewmodels.ProfileViewModel
 import org.koin.androidx.compose.koinViewModel
 
@@ -66,7 +69,11 @@ fun ProfileScreen(
                         }
                         context.startActivity(intent)
                     },
-                    modifier = Modifier.fillMaxWidth()
+                    modifier = Modifier.fillMaxWidth(),
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = ThemeColor
+                    )
+
                 ) {
                     Text("Check Wallet Balance")
                 }
@@ -74,7 +81,10 @@ fun ProfileScreen(
 
             Button(
                 onClick = { viewModel.updateUserInfo() },
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier.fillMaxWidth(),
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = ThemeColor
+                )
             ) {
                 Text("Update Information")
             }
