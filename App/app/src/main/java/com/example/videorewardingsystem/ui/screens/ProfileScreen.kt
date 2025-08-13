@@ -71,7 +71,8 @@ fun ProfileScreen(
                     },
                     modifier = Modifier.fillMaxWidth(),
                     colors = ButtonDefaults.buttonColors(
-                        containerColor = ThemeColor
+                        containerColor = ThemeColor,
+                        contentColor = Color.White
                     )
 
                 ) {
@@ -83,7 +84,8 @@ fun ProfileScreen(
                 onClick = { viewModel.updateUserInfo() },
                 modifier = Modifier.fillMaxWidth(),
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = ThemeColor
+                    containerColor = ThemeColor,
+                    contentColor = Color.White
                 )
             ) {
                 Text("Update Information")
