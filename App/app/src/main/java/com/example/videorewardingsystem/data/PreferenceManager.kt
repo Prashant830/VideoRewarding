@@ -2,6 +2,7 @@ package com.example.videorewardingsystem.data
 
 import android.content.Context
 import android.content.SharedPreferences
+import com.example.videorewardingsystem.networklayer.retrofit.model.VideoModel
 
 class PreferenceManager(context: Context) {
     private val sharedPreferences: SharedPreferences = context.getSharedPreferences(
@@ -25,41 +26,47 @@ class PreferenceManager(context: Context) {
         return Triple(userName, email, wallet)
     }
 
-    // ===== Video progress save/load =====
-    fun saveOrUpdateVideoProgress(videoId: String, videoUrl: String, currentWatched: Long) {
+    fun saveOrUpdateVideoProgress(videoId: Int, videoUrl: String, currentWatched: Long) {
         val currentData = sharedPreferences.getString(KEY_VIDEO_PROGRESS, "") ?: ""
-        val entries = currentData.split(";").filter { it.isNotBlank() }.toMutableList()
+        val entries = currentData.split(";")
+            .filter { it.isNotBlank() }
+            .mapNotNull { entry ->
+                val parts = entry.split("-")
+                    VideoModel(parts[0].toInt(), parts[1], parts[2].toLongOrNull() ?: 0L)
+            }.toMutableList()
 
-        // Find if videoId exists
-        val index = entries.indexOfFirst { it.startsWith("$videoId-") }
+        val index = entries.indexOfFirst { it.videoId == videoId }
 
         if (index >= 0) {
             // Update existing
-            entries[index] = "$videoId-$videoUrl-$currentWatched"
+            entries[index] = VideoModel(videoId, videoUrl, currentWatched)
         } else {
             // Add new
-            entries.add("$videoId-$videoUrl-$currentWatched")
+            entries.add(VideoModel(videoId, videoUrl, currentWatched))
         }
 
+        val serialized = entries.joinToString(";") { "${it.videoId}-${it.videoUrl}-${it.currentWatched}" }
         sharedPreferences.edit()
-            .putString(KEY_VIDEO_PROGRESS, entries.joinToString(";"))
+            .putString(KEY_VIDEO_PROGRESS, serialized)
             .apply()
     }
 
-    private fun getVideoProgressList(): List<Triple<String, String, Long>> {
+    fun getVideoProgressList(): List<VideoModel> {
         val currentData = sharedPreferences.getString(KEY_VIDEO_PROGRESS, "") ?: ""
         return currentData.split(";")
             .filter { it.isNotBlank() }
-            .map {
-                val parts = it.split("-")
-                Triple(parts[0], parts[1], parts[2].toLong())
+            .mapNotNull { entry ->
+                val parts = entry.split("-")
+                if (parts.size == 3) {
+                    VideoModel(parts[0].toInt(), parts[1], parts[2].toLongOrNull() ?: 0L)
+                } else null
             }
     }
 
-    fun getVideoProgressById(videoId: String): Triple<String, String, Long>? {
-        val entries = getVideoProgressList()
-        return entries.find { it.first == videoId }
+    fun getVideoProgressById(videoId: Int): VideoModel? {
+        return getVideoProgressList().find { it.videoId == videoId }
     }
+
 
     companion object {
         private const val PREF_NAME = "video_rewarding_prefs"

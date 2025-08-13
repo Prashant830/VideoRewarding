@@ -54,13 +54,6 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
-
-    // Example extra dependencies
-    implementation("androidx.navigation:navigation-compose:2.7.7")
-    val koinVersion = "3.5.3"
-    implementation("io.insert-koin:koin-android:$koinVersion")
-    implementation("io.insert-koin:koin-androidx-compose:$koinVersion")
-
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -70,5 +63,18 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
     implementation("androidx.lifecycle:lifecycle-runtime-compose:2.8.7")
+
+    // Example extra dependencies
+    implementation("androidx.navigation:navigation-compose:2.7.7")
+    val koinVersion = "3.5.3"
+    implementation("io.insert-koin:koin-android:$koinVersion")
+    implementation("io.insert-koin:koin-androidx-compose:$koinVersion")
+    // retrofit
+    val retrofitVersion = "2.10.0"
+    implementation("com.squareup.retrofit2:retrofit:$retrofitVersion")
+    implementation("com.squareup.retrofit2:converter-gson:2.2.0")
+
+    // okhttp client
+    implementation("com.squareup.okhttp3:logging-interceptor:4.10.0")
 
 }
