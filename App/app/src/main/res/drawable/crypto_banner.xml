@@ -1,0 +1,76 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="400dp"
+    android:height="200dp"
+    android:viewportWidth="400"
+    android:viewportHeight="200">
+
+    <!-- Background -->
+    <path
+        android:fillColor="#0A0A0A"
+        android:pathData="M0,0h400v200h-400z" />
+
+    <!-- YouTube-style play button (red rounded rectangle) -->
+    <path
+        android:fillColor="#FF0000"
+        android:pathData="M40,60
+                          h60
+                          a20,20 0 0 1 20,20
+                          v40
+                          a20,20 0 0 1 -20,20
+                          h-60
+                          a20,20 0 0 1 -20,-20
+                          v-40
+                          a20,20 0 0 1 20,-20z" />
+
+    <!-- White play triangle -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M60,75L90,100L60,125z" />
+
+    <!-- Ethereum logo -->
+    <path
+        android:fillColor="#627EEA"
+        android:pathData="M150,50L170,90L150,80L130,90z" />
+    <path
+        android:fillColor="#627EEA"
+        android:fillAlpha="0.8"
+        android:pathData="M150,80L170,90L150,120L130,90z" />
+
+    <!-- Bitcoin circle -->
+    <path
+        android:fillColor="#F7931A"
+        android:pathData="M200,70a15,15 0 1,0 0.1,0z" />
+
+    <!-- Bitcoin "B" -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:strokeWidth="1"
+        android:pathData="M197,65h6v3h-6z M197,70h6v3h-6z" />
+
+    <!-- Polygon logo (hex) -->
+    <path
+        android:fillColor="#8247E5"
+        android:pathData="M240,80l10,-6l10,6v12l-10,6l-10,-6z" />
+
+    <!-- Title placeholder -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:fillAlpha="0.15"
+        android:pathData="M40,10h320v20h-320z" />
+
+    <!-- Progress bar background -->
+    <path
+        android:fillColor="#333333"
+        android:pathData="M40,170h320v12h-320z" />
+
+    <!-- Progress bar fill (80%) -->
+    <path
+        android:fillColor="#00FFAA"
+        android:pathData="M40,170h256v12h-256z" />
+
+    <!-- Video ID placeholder -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:fillAlpha="0.4"
+        android:pathData="M40,150h200v10h-200z" />
+</vector>
