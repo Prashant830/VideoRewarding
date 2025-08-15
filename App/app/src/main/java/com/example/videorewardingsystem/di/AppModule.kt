@@ -48,7 +48,7 @@ val appModule = module {
 
     // ✅ ViewModels
     viewModel { ProfileViewModel(get()) } // Needs Repository
-    viewModel { PlayerViewModel() }
+    viewModel { PlayerViewModel(get(),get()) }
     viewModel { SplashViewModel() }
     viewModel { HomeViewModel(get(),get()) }
 }

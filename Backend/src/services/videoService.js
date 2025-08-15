@@ -11,8 +11,9 @@ async function getVideos() {
         // Convert to desired schema
         const videos = videoUrls.map((url, index) => ({
             videoId: index + 1,
-            videoUrl: url,
-            currentWatched: 0
+            videoUrl: url.url,
+            currentWatched: 0,
+            totalRuntime: url.totalRuntime
         }));
 
         return videos;
@@ -21,5 +22,4 @@ async function getVideos() {
     }
 }
 
-
-module.exports = { getVideos};
+module.exports = { getVideos };

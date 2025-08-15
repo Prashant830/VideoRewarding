@@ -21,7 +21,7 @@ class HomeViewModel(
         fetchVideos()
     }
 
-    private fun fetchVideos() {
+    fun fetchVideos() {
         viewModelScope.launch {
             _uiState.value = _uiState.value.copy(isLoading = true)
             val cachedVideos = getVideoProgressList()
@@ -39,7 +39,8 @@ class HomeViewModel(
                         saveOrUpdateVideoProgress(
                             video.videoId,
                             video.videoUrl,
-                            video.currentWatched
+                            video.currentWatched,
+                            video.totalRuntime
                         )
                     }
                     _uiState.value = _uiState.value.copy(
@@ -56,9 +57,15 @@ class HomeViewModel(
         }
     }
 
-    private fun saveOrUpdateVideoProgress(videoId: Int, videoUrl: String, currentWatched: Long) {
-        sharedPreferences.saveOrUpdateVideoProgress(videoId, videoUrl, currentWatched)
+    fun saveOrUpdateVideoProgress(videoId: Int, videoUrl: String, currentWatched: Long, totalRuntime: Long){
+        sharedPreferences.saveOrUpdateVideoProgress(videoId, videoUrl, currentWatched, totalRuntime)
+        val updatedVideos = _uiState.value.videos.map { video ->
+            if (video.videoId == videoId) video.copy(currentWatched = currentWatched)
+            else video
+        }
+        _uiState.value = _uiState.value.copy(videos = updatedVideos)
     }
+
 
     private fun getVideoProgressList(): List<VideoModel> {
         return sharedPreferences.getVideoProgressList() ?: emptyList()

@@ -1,7 +1,8 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.kotlin.compose) // REQUIRED for Kotlin 2.0 Compose projects
+    alias(libs.plugins.kotlin.compose)
+    id("kotlin-parcelize")
 }
 
 android {
@@ -54,6 +55,8 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+    implementation(libs.androidx.media3.ui)
+    implementation(libs.androidx.media3.exoplayer)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -76,5 +79,7 @@ dependencies {
 
     // okhttp client
     implementation("com.squareup.okhttp3:logging-interceptor:4.10.0")
+    implementation("com.pierfrancescosoffritti.androidyoutubeplayer:core:11.1.0")
+
 
 }
