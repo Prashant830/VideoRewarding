@@ -31,7 +31,7 @@ class PreferenceManager(context: Context) {
         val entries = currentData.split(";")
             .filter { it.isNotBlank() }
             .mapNotNull { entry ->
-                val parts = entry.split("-")
+                val parts = entry.split("~")
                     VideoModel(parts[0].toInt(), parts[1], parts[2].toLongOrNull() ?: 0L, parts[3].toLongOrNull() ?: 0L)
             }.toMutableList()
 
@@ -45,7 +45,7 @@ class PreferenceManager(context: Context) {
             entries.add(VideoModel(videoId, videoUrl, currentWatched, totalRuntime))
         }
 
-        val serialized = entries.joinToString(";") { "${it.videoId}-${it.videoUrl}-${it.currentWatched}-${it.totalRuntime}" }
+        val serialized = entries.joinToString(";") { "${it.videoId}~${it.videoUrl}~${it.currentWatched}~${it.totalRuntime}" }
         sharedPreferences.edit()
             .putString(KEY_VIDEO_PROGRESS, serialized)
             .apply()
@@ -56,7 +56,7 @@ class PreferenceManager(context: Context) {
         return currentData.split(";")
             .filter { it.isNotBlank() }
             .mapNotNull { entry ->
-                val parts = entry.split("-")
+                val parts = entry.split("~")
                 if (parts.size == 4) {
                     VideoModel(parts[0].toInt(), parts[1], parts[2].toLongOrNull() ?: 0L, parts[3].toLongOrNull() ?: 0L)
                 } else null
