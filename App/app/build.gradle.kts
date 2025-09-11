@@ -67,19 +67,41 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
     implementation("androidx.lifecycle:lifecycle-runtime-compose:2.8.7")
 
-    // Example extra dependencies
+    // Navigation
     implementation("androidx.navigation:navigation-compose:2.7.7")
+
+    // Koin
     val koinVersion = "3.5.3"
     implementation("io.insert-koin:koin-android:$koinVersion")
     implementation("io.insert-koin:koin-androidx-compose:$koinVersion")
-    // retrofit
+
+    // Retrofit
     val retrofitVersion = "2.10.0"
     implementation("com.squareup.retrofit2:retrofit:$retrofitVersion")
     implementation("com.squareup.retrofit2:converter-gson:2.2.0")
 
-    // okhttp client
+    // OkHttp
     implementation("com.squareup.okhttp3:logging-interceptor:4.10.0")
+
+    // YouTube Player
     implementation("com.pierfrancescosoffritti.androidyoutubeplayer:core:11.1.0")
 
+    // ARCore
+    implementation("com.google.ar:core:1.43.0")
 
+    // Sceneform (Thomas Gorisse fork)
+    implementation("com.gorisse.thomas.sceneform:sceneform:1.21.0") {
+        exclude(group = "com.google.ar.sceneform")
+    }
+
+    // Filament
+    implementation("com.google.android.filament:filament-android:1.21.1")
+    implementation("com.google.android.filament:filament-utils-android:1.21.1")
+    implementation("com.gorisse.thomas.sceneform:core:1.21.0")
+    implementation("com.gorisse.thomas.sceneform:ux:1.21.0")
+    implementation("com.google.accompanist:accompanist-permissions:0.31.5-beta")
+}
+
+configurations.all {
+    exclude(group = "com.google.ar.sceneform")
 }
