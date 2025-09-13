@@ -61,17 +61,17 @@ fun BottomNavigationBar(
                 indicatorColor = Color.DarkGray
             )
         )
-        NavigationBarItem(
-            selected = false,
-            onClick = onNavigateToPlayer,
-            icon = { Icon(Icons.Default.PlayArrow, contentDescription = "Player", tint = Color.White) },
-            label = { Text("Player", color = Color.White) },
-            colors = NavigationBarItemDefaults.colors(
-                unselectedIconColor = Color.White,
-                unselectedTextColor = Color.White,
-                indicatorColor = Color.DarkGray
-            )
-        )
+//        NavigationBarItem(
+//            selected = false,
+//            onClick = onNavigateToPlayer,
+//            icon = { Icon(Icons.Default.PlayArrow, contentDescription = "Player", tint = Color.White) },
+//            label = { Text("Player", color = Color.White) },
+//            colors = NavigationBarItemDefaults.colors(
+//                unselectedIconColor = Color.White,
+//                unselectedTextColor = Color.White,
+//                indicatorColor = Color.DarkGray
+//            )
+//        )
     }
 }
 

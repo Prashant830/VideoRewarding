@@ -27,3 +27,26 @@ data class RewardModel(
     @SerializedName("code")
     val recipient: String,
 )
+
+data class PredictionResponse(
+    val inference_id: String,
+    val time: Double,
+    val image: ImageInfo,
+    val predictions: List<Prediction>
+)
+
+data class ImageInfo(
+    val width: Int,
+    val height: Int
+)
+
+data class Prediction(
+    val x: Float,
+    val y: Float,
+    val width: Float,
+    val height: Float,
+    val confidence: Float,
+    val `class`: String,
+    val class_id: Int,
+    val detection_id: String
+)
