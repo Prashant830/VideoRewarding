@@ -112,7 +112,7 @@ fun VideoItem(
 
             if (video.currentWatched >= video.totalRuntime) {
                 Text(
-                    text = "✅ Successfully Watched – Claim Reward",
+                    text = "✅ Watched – Claim Rewards",
                     style = MaterialTheme.typography.bodyMedium,
                     color = Color.White,
                     modifier = Modifier

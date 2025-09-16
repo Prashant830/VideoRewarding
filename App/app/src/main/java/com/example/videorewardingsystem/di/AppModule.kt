@@ -20,7 +20,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 val appModule = module {
 
     // Base URL and Retrofit for first API
-    single { "https://6216f32009a8.ngrok-free.app/home/" }
+    single { "https://6039d20464da.ngrok-free.app/home/" }
     single {
         Retrofit.Builder()
             .baseUrl(get<String>())
