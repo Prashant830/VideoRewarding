@@ -56,7 +56,7 @@ class AiCoach(
         } else {
             val pred = predictions[selectedIndex] ?: 0f
             val hint = when (pred) {
-                in 90f..95f -> "🔥 Perfect! 🔥 Looks right."
+                in 90f..95f -> "🔥Looks right but not Eth."
                 in 75f..90f -> "😊 Very promising!"
                 in 50f..75f -> "🤔 Maybe…"
                 in 25f..50f -> "❄️ Cold. Probably not."
@@ -245,9 +245,9 @@ fun PlayerScreen(
                                                                                 val distance = sqrt(dx * dx + dy * dy + dz * dz)
 
                                                                                 val response: String = if (distance <= 1f) {
-                                                                                    aiCoach.getResponse(index, userPose) + "\n📏 Distance: ${"%.2f".format(distance)}m"
+                                                                                    aiCoach.getResponse(index, userPose)
                                                                                 } else {
-                                                                                    "⛔ Too far! 📏 You are ${"%.2f".format(distance)}m away.\nMove within 1 meter to claim rewards."
+                                                                                    "⛔ Too far! 📏 You are ${"%.2f".format(distance)}m away.\nMove with in 1 meter to claim rewards."
                                                                                 }
 
                                                                                 (ctx as? ComponentActivity)?.runOnUiThread {
@@ -374,7 +374,8 @@ fun MiniMapRadar(
         ) {
             // 🔹 Top Label Box
             Card(
-                modifier = Modifier.padding(4.dp)
+                modifier = Modifier.padding(10.dp)
+                    .align(Alignment.CenterHorizontally)
             ) {
                 Text(
                     text = "🎯 Eth Treasure Hunt",
@@ -408,7 +409,7 @@ fun MiniMapRadar(
                         style = androidx.compose.ui.graphics.drawscope.Stroke(width = 2f)
                     )
 
-                    drawCircle(color = androidx.compose.ui.graphics.Color.Cyan, radius = 6f)
+                    drawCircle(color = androidx.compose.ui.graphics.Color.Cyan, radius = 10f)
 
                     blockPositions.forEach { (index, pose) ->
                         val dx = pose.tx() - userPose.tx()
@@ -426,7 +427,7 @@ fun MiniMapRadar(
 
                         drawCircle(
                             color = color,
-                            radius = 10f,
+                            radius = 11f,
                             center = androidx.compose.ui.geometry.Offset(centerX + scaledX, centerY + scaledY)
                         )
                     }
