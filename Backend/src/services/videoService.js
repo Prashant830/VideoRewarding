@@ -13,7 +13,8 @@ async function getVideos() {
             videoId: index + 1,
             videoUrl: url.url,
             currentWatched: 0,
-            totalRuntime: url.totalRuntime
+            totalRuntime: url.totalRuntime,
+            isRewardClaimed: false
         }));
 
         return videos;

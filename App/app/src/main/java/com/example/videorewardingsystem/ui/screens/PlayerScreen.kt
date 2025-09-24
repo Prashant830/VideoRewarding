@@ -131,6 +131,9 @@ fun PlayerScreen(
                                 config.lightEstimationMode = Config.LightEstimationMode.DISABLED
                                 it.configure(config)
                                 arView.session = it
+                                // Keep 3D blocks visible at very close distances by reducing the near clip plane
+                                arView.scene.camera.nearClipPlane = 0.01f
+                                arView.scene.camera.farClipPlane = 100f
                             }
 
                             lifecycleOwner.lifecycle.addObserver(object :
@@ -244,10 +247,10 @@ fun PlayerScreen(
                                                                                 val dz = userPose.tz() - blockPose.tz()
                                                                                 val distance = sqrt(dx * dx + dy * dy + dz * dz)
 
-                                                                                val response: String = if (distance <= 1f) {
+                                                                                val response: String = if (distance <= 1.3f) {
                                                                                     aiCoach.getResponse(index, userPose)
                                                                                 } else {
-                                                                                    "⛔ Too far! 📏 You are ${"%.2f".format(distance)}m away.\nMove with in 1 meter to claim rewards."
+                                                                                    "⛔ Too far! 📏 You are ${"%.2f".format(distance)}m away.\nMove with in 1.3 meter to claim rewards."
                                                                                 }
 
                                                                                 (ctx as? ComponentActivity)?.runOnUiThread {
